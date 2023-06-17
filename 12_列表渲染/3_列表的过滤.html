@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>列表过滤</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <input type="text" placeholder="请输入姓名:" v-model="keyword">
+        <ul>
+            <li v-for="p in filPerson" :key="p.id">姓名: {{p.name}}, 年龄: {{p.age}}</li>
+        </ul>
+    </div>
+</body>
+
+<script type="text/javascript">
+    // 用watch实现
+    // #region
+    /*
+    new Vue({
+        el: '#root',
+        data() {
+            return {
+                persons:[
+                    {id: '001', name: '马冬梅', age: 18},
+                    {id: '002', name: '周冬雨', age: 19},
+                    {id: '003', name: '周杰伦', age: 20},
+                    {id: '004', name: '温兆伦', age: 20}
+                ],
+                keyword: '',
+                filPerson: []
+            }
+        },
+        watch:{
+            keyword:{
+                immediate: true,
+                handler(val){
+                    this.filPerson = this.persons.filter((p) => {
+                        return p.name.indexOf(val) !== -1;
+                    });
+                }
+            }
+        }
+    })
+    */
+   // #endregion
+
+   // 用computed计算属性来实现
+   new Vue({
+        el: '#root',
+        data() {
+            return {
+                persons:[
+                    {id: '001', name: '马冬梅', age: 18},
+                    {id: '002', name: '周冬雨', age: 19},
+                    {id: '003', name: '周杰伦', age: 20},
+                    {id: '004', name: '温兆伦', age: 20}
+                ],
+                keyword: '',
+            }
+        },
+        computed:{
+            filPerson(){
+                return this.persons.filter((p) => {
+                    return p.name.indexOf(this.keyword) !== -1
+                })
+            }
+        }
+    })
+
+</script>
+</html>

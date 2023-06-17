@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>模拟数据检测</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        
+    </div>
+</body>
+
+<script type="text/javascript">
+    let data = {
+        name: 'ncepu',
+        address: 'baoding'
+    }
+    
+    const obj = new Observer(data);
+
+    function Observer(obj){
+        // 汇总对象中的所有属性，汇总成一个数组
+        const keys = Object.keys(obj);
+        // 遍历
+        keys.forEach((k) => {
+            Object.defineProperties(this, k, {
+                get(){
+                    return obj[k];
+                },
+                set(val){
+                    obj[k] = val;
+                }
+            })
+        })
+    }
+
+</script>
+</html>
