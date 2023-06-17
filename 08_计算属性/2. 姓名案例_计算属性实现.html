@@ -22,13 +22,23 @@
             lastName: '三',
         },
         computed:{
-            fullName:{
-                // 当有人读取FullName, get就会被调用，且返回值就为fullName的值
-                // get初次读取fullName时，会被调用。
-                // get当所依赖的数据发生变化时，也会发生变化。
-                get(){
-                    return this.firstName + '-' + this.lastName;
-                }
+            // 完整写法
+            // fullName:{
+            //     // 当有人读取FullName, get就会被调用，且返回值就为fullName的值
+            //     // get初次读取fullName时，会被调用。
+            //     // get当所依赖的数据发生变化时，也会发生变化。
+            //     get(){
+            //         return this.firstName + '-' + this.lastName;
+            //     },
+            //     set(value){
+            //         const arr = value.split('-');
+            //         this.firstName = arr[0];
+            //         this.lastName = arr[1];
+            //     }
+            // },
+            // 简写 相当于只有get方法，没有set方法
+            fullName(){
+                return '简写';
             }
         }
     })
