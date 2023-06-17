@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>回顾Object.defineproperty方法</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="root">
+
+    </div>
+</body>
+
+<script type="text/javascript">
+    let number = 19;
+    let person = {
+        name: '张三',
+        sex: '男'
+    }
+
+    Object.defineProperty(person, 'age', {
+        value: 18,
+        enumerable: true,      // enumerable是控制属性是否可以枚举， 默认值为False
+        writable: true,     // 控制属性是否可以被修改，默认值是False
+        configurable: true, // 控制属性是否可以被删除，默认值为false
+
+        // 数据代理(类似于数据绑定or双向数据绑定)
+        get:function(){
+            // 每次想访问number数据都会调用get方法进行获取。
+            return number
+        },
+        // 当有人修改person的age属性时，set函数就会被调用，且会收到具体的值
+        set(value){
+            console.log("有人修改了age值");
+            number = value;
+        }
+
+    })
+    console.log(person);
+</script>
+
+</html>

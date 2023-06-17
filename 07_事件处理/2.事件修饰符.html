@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>实践修饰符</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2>欢迎来到{{name}}学习</h2>
+        <!-- 事件修饰符：
+            prevent: 阻止默认事件
+            stop：阻止事件冒泡
+            once：事件只触发一次
+            capture：使用事件的捕获模式
+            self：只有event.target是当前操作的元素是才触发事件
+            passive：事件默认立即执行，无需等待回调执行完毕
+        -->
+        <a href="https://www.baidu.com" @click.prevent="showInfo">点我去百度！</a>
+    </div>
+</body>
+
+<script type="text/javascript">
+    new Vue({
+        el:'#root',
+        data:{
+            name: 'ncepu',
+
+        },
+        methods:{
+            showInfo(){
+                alert('同学你好！');
+            }
+        }
+    })
+
+</script>
+</html>
