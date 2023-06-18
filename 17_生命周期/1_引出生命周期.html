@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>引出生命周期</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2 :style="{opacity}">Welcome</h2>
+    </div>
+</body>
+
+<script type="text/javascript">
+    new Vue({
+        el:'#root',
+        data() {
+            return {
+                opacity: 1
+            }
+        },
+        methods: {
+            change(){
+                setInterval(() =>{
+                    this.opacity -= 0.01
+                    if(this.opacity <= 0) this.opacity = 1
+                }, 16)
+            }
+        },
+        // Vue 完成模板的解析，并把初始DOM元素放入页面后(挂载完毕)调用mounted
+        mounted() {
+            this.change();
+        },
+    })
+</script>
+</html>
