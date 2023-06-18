@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>title</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+    <script src="https://cdn.bootcdn.net/ajax/libs/dayjs/1.11.7/dayjs.min.js"></script>
+</head>
+<body>
+    <div id="root">
+        <!-- 计算属性实现 -->
+        <h2>{{fmtTime}}</h2>
+        <!-- methods实现 -->
+        <h2>{{getfmtTime()}}</h2>
+        <!-- 过滤器实现 -->
+        <h2>{{time | timeFormater}}</h2>
+    </div>
+</body>
+
+<script type="text/javascript">
+    // 全局过滤器
+    // Vue.filter()
+
+    new Vue({
+        el:'#root',
+        data() {
+            return {
+                time:1687049044665
+            }
+        },
+        computed:{
+            fmtTime(){
+                return dayjs(this.time).format('YYYY-MM-DD HH:mm:ss')
+            }
+        },
+        methods: {
+            getfmtTime(){
+                return dayjs(this.time).format('YYYY-MM-DD HH:mm:ss')
+            }
+        },
+        // 局部过滤器
+        filters:{
+            timeFormater(val){
+                return dayjs(val).format('YYYY-MM-DD HH:mm:ss')
+            }
+        }
+    })
+</script>
+</html>
