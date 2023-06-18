@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>组件的嵌套</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <school></school>
+        <hr>
+    </div>
+</body>
+
+<script type="text/javascript">
+
+
+        // 创建school组件
+    const school = Vue.extend({
+        template: ` <div>
+                    <h2>学校名称： {{school.name}}</h2>
+                    <h2>学校地址：{{school.address}}</h2>
+                    <button @click="school.name = 'hebust'">点我修改学校名</button>
+                    <student></student>
+                    </div>`,
+        data() {
+            return {
+                school:{
+                    name: 'ncepu',
+                    address: '韩庄乡'
+                },
+            }
+        },
+    }) 
+
+    new Vue({
+        el:'#root',
+        // 组件注册，可以自定义新名字(局部注册)
+        components:{
+            // student: student,
+            school: school,
+        }
+    })
+</script>
+</html>
