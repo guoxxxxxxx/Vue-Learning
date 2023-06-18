@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>收集表单数据</title>
+    <script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+    <!-- 
+        v-model的三个修饰符：
+        1. lazy: 失去焦点，再收集数据
+        2. number: 指定类型为数字
+        3. train: 删除首尾空格
+     -->
+    <div id="root">
+        <form @submit.prevent="demo">
+            <label for="username">账号:</label> 
+            <input type="text" placeholder="Please input username!" id="username" v-model="form.username"> <br>
+            <label for="password">密码:</label>
+            <input type="password" id="password" placeholder="Please input password" v-model="form.password"> <br>
+            性别：
+            男<input type="radio" name="sex" value="man" v-model="form.sex">
+            女<input type="radio" name="sex" value="woman" v-model="form.sex"> <br>
+            年龄: <input type="number" v-model.number="form.age">
+            爱好:
+            学习<input type="checkbox" v-model="form.hobby" value="study">
+            打游戏<input type="checkbox" v-model="form.hobby" value="game">
+            吃饭<input type="checkbox" v-model="form.hobby" value="eat">
+            <br>
+            所属校区
+            <select v-model="form.city">
+                <option value="beijing">北京</option>
+                <option value="shanghai">上海</option>
+            </select><br>
+            其他信息:
+            <textarea v-model="form.other"></textarea><br>
+            <input type="checkbox" v-model="form.agree">阅读并阅读<a href="https://www.baidu.com">《用户协议》</a>
+            <button>提交</button>
+        </form>
+    </div>
+</body>
+
+<script type="text/javascript">
+    new Vue({
+        el:'#root',
+        data() {
+            return {
+                form:{
+                    username: '',
+                    password: '',
+                    sex: 'man',
+                    hobby: [],
+                    city: '',
+                    other: '',
+                    agree: false,
+                    age: 0,
+                }
+            }
+        },
+        methods: {
+            demo(){
+                console.log(JSON.stringify(this.form));
+            }
+        },
+    })
+</script>
+</html>
